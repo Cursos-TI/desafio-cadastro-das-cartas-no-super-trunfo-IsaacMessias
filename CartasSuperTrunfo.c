@@ -10,9 +10,18 @@ int main() {
     float area1, area2;
     float pib1, pib2;
     int pontos1, pontos2;
+    
     float densidade1, densidade2, pibpc1, pibpc2;
+    
+    unsigned int resultadopopulacao1 = populacao1 > populacao2;
+    unsigned int resultadoarea = area1 > area2;
+    unsigned int resultadopib = pib1 > pib2;
+    unsigned int resultadopontos = pontos1 > pontos2;
+    unsigned int resultadodensidade = densidade1 < densidade2;
+    unsigned int resultadopinbpc = pibpc1 > pibpc2;
+    unsigned int resultadosuper = superpoder1 > superpoder2;
 
-     //solicitados todos os valores da primeira carta, igual para a segunda:
+//solicitados todos os valores da primeira carta, igual para a segunda:
      //declarei as informações de cada carta junto
 
     printf("* Bem vindo ao cadastro de cartas do SUPER TRUNFO! *\n");
@@ -25,26 +34,25 @@ int main() {
 
     printf("Insira o codigo da carta, equivale a letra + 01: \n");
     scanf(" %s", &codigo1);
-
-    while (getchar() != '\n');//limpa enter
-    fgets(cidade1, sizeof(cidade1), stdin);
-    cidade1[strcspn(cidade1, "\n")] = '\0'; // Remove o \n
+    
+    printf("Insira o nome da cidade:\n");
+    scanf(" %[^\n]", cidade1);
 
     printf("Insira a população da cidade: \n");
     scanf(" %d", &populacao1);
 
-    printf("Insira a população da cidade em Km2: \n");
+    printf("Insira a area da cidade em Km2: \n");
     scanf(" %f", &area1);
 
-    printf("Insira o pib aproximado da cidade: \n");
+    printf("Insira o pib aproximado da cidade em bilhões: \n");
     scanf(" %f", &pib1);
 
     printf("Insira a quantidade de pontos turisticos: \n");
     scanf(" %d", &pontos1);
 
     densidade1 = (float) populacao1 / area1;
-    pibpc1 = (float) pib1 / populacao1;
-
+    pibpc1 = (float) (pib1 / populacao1) * 100000;
+    float superpoder1 = (float)(populacao1 + area1 + pib1 + pontos1 + pibpc1 + (1 / densidade1));
 
 printf("Cadastro concluido, vamos para o proximo.\n");
     
@@ -54,11 +62,8 @@ printf("Cadastro concluido, vamos para o proximo.\n");
     printf("Insira o codigo da carta, equivale a letra + 02: \n");
     scanf(" %s", &codigo2);
 
-      // Limpa o ENTER antes de fgets novamente
-    while (getchar() != '\n');
     printf("Insira o nome da cidade:\n");
-    fgets(cidade2, sizeof(cidade2), stdin);
-    cidade2[strcspn(cidade2, "\n")] = '\0';
+    scanf(" %[^\n]", cidade2);
 
     printf("Insira a população da cidade: \n");
     scanf(" %d", &populacao2);
@@ -66,17 +71,19 @@ printf("Cadastro concluido, vamos para o proximo.\n");
     printf("Insira a população da cidade em Km2: \n");
     scanf(" %f", &area2);
 
-    printf("Insira o pib aproximado da cidade: \n");
+    printf("Insira o pib aproximado da cidade em bilhões: \n");
     scanf(" %f", &pib2);
 
     printf("Insira a quantidade de pontos turisticos: \n");
     scanf(" %d", &pontos2);
     
     densidade2 = (float) populacao2 / area2;
-    pibpc2 = (float) pib2 / populacao2;
+    pibpc2 = (float) (pib2 / populacao2) * 100000;
+    float superpoder2 = (float)(populacao2 + area2 + pib2 + pontos2 + pibpc2 + (1 / densidade2));
 
         //apresentação das duas cartas.
         printf("Cadastro concluido, as cartas são: \n");
+        printf("--------------------------\n");
         printf("Carta 1:\n"
                 "Estado: %c \n "
                 "Codigo da carta: %s \n"
@@ -86,9 +93,12 @@ printf("Cadastro concluido, vamos para o proximo.\n");
                 "PIB: %.2f \n"
                 "Numero de pontos turisticos: %d \n"
                 "Densidade populacional: %.2f\n"
-                "PIB per capita: %.2f\n",
-                letra1, codigo1, cidade1, populacao1, area1, pib1, pontos1, densidade1, pibpc1);
- printf("Carta 2:\n"
+                "PIB per capita: %.2f\n"
+                "Super poder: %.2lf\n",
+                letra1, codigo1, cidade1, populacao1, area1, pib1, pontos1, densidade1, pibpc1, superpoder1);
+        
+        printf("--------------------------\n");
+        printf("Carta 2:\n"
                 "Estado: %c\n "
                 "Codigo da carta: %s \n"
                 "Nome da cidade: %s \n"
@@ -97,9 +107,26 @@ printf("Cadastro concluido, vamos para o proximo.\n");
                 "PIB: %.2f \n"
                 "Numero de pontos turisticos: %d \n"
                 "Densidade populacional: %.2f\n"
-                "PIB per capita: %.2f\n",
-                letra2, codigo2, cidade2, populacao2, area2, pib2, pontos2, densidade2, pibpc2);
+                "PIB per capita: %.2f\n"
+                "Super poder: %.2lf\n",
+                letra2, codigo2, cidade2, populacao2, area2, pib2, pontos2, densidade2, pibpc2, superpoder2);
 //utilizei apenas 1 comando por carta
+
+printf("--------------------------\n");
+printf("Seguimos para o resultado de cada comparação:");
+printf("Para resultado 1, a carta 1 venceu.\n" "Para resultado 0, carta 2 vencer\n");
+    printf("vencedor em populção: %d\n", resultadopopulacao1);
+    printf("Vencedor em área: %d\n", resultadoarea);
+    printf("Vencedor em PIB: %d\n", resultadopib);
+    printf("Vencedor em Pontos turistivos: %d\n", resultadopontos);
+    printf("Vencedo em Dencidade populacional(menor é melhor): %d\n", resultadodensidade);
+    printf("Vencedor em PIB per capita: %d\n", resultadopinbpc);
+    printf("Vencedor em super poder: %d\n", resultadosuper);
+
+printf("--------------------------\n");
+printf("Espero que tenha gostado!!!\n""Obrigado.\n");
+
+
 
 return 0;
 }
