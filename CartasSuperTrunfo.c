@@ -6,20 +6,13 @@ int main() {
     char letra1, letra2;
     char codigo1[5], codigo2[5];
     char cidade1[50], cidade2[50];
-    int populacao1, populacao2;
+    float populacao1, populacao2;
     float area1, area2;
     float pib1, pib2;
     int pontos1, pontos2;
     
     float densidade1, densidade2, pibpc1, pibpc2;
     
-    unsigned int resultadopopulacao1 = populacao1 > populacao2;
-    unsigned int resultadoarea = area1 > area2;
-    unsigned int resultadopib = pib1 > pib2;
-    unsigned int resultadopontos = pontos1 > pontos2;
-    unsigned int resultadodensidade = densidade1 < densidade2;
-    unsigned int resultadopinbpc = pibpc1 > pibpc2;
-    unsigned int resultadosuper = superpoder1 > superpoder2;
 
 //solicitados todos os valores da primeira carta, igual para a segunda:
      //declarei as informações de cada carta junto
@@ -39,7 +32,7 @@ int main() {
     scanf(" %[^\n]", cidade1);
 
     printf("Insira a população da cidade: \n");
-    scanf(" %d", &populacao1);
+    scanf(" %f", &populacao1);
 
     printf("Insira a area da cidade em Km2: \n");
     scanf(" %f", &area1);
@@ -51,8 +44,8 @@ int main() {
     scanf(" %d", &pontos1);
 
     densidade1 = (float) populacao1 / area1;
-    pibpc1 = (float) (pib1 / populacao1) * 100000;
-    float superpoder1 = (float)(populacao1 + area1 + pib1 + pontos1 + pibpc1 + (1 / densidade1));
+    pibpc1 = (float) (pib1 / populacao1);
+    float superpoder1 = (float)populacao1 + area1 + pib1 + pontos1 + pibpc1 + (1 / densidade1);
 
 printf("Cadastro concluido, vamos para o proximo.\n");
     
@@ -66,7 +59,7 @@ printf("Cadastro concluido, vamos para o proximo.\n");
     scanf(" %[^\n]", cidade2);
 
     printf("Insira a população da cidade: \n");
-    scanf(" %d", &populacao2);
+    scanf(" %f", &populacao2);
 
     printf("Insira a população da cidade em Km2: \n");
     scanf(" %f", &area2);
@@ -78,23 +71,31 @@ printf("Cadastro concluido, vamos para o proximo.\n");
     scanf(" %d", &pontos2);
     
     densidade2 = (float) populacao2 / area2;
-    pibpc2 = (float) (pib2 / populacao2) * 100000;
-    float superpoder2 = (float)(populacao2 + area2 + pib2 + pontos2 + pibpc2 + (1 / densidade2));
+    pibpc2 = (float) (pib2 / populacao2);
+    float superpoder2 = (float) populacao2 + area2 + pib2 + pontos2 + pibpc2 + (1 / densidade2);
+
+    int resultadopopulacao1 = populacao1 > populacao2;
+    int resultadoarea = area1 > area2;
+    int resultadopib = pib1 > pib2;
+    int resultadopontos = pontos1 > pontos2;
+    int resultadodensidade = densidade1 < densidade2;
+    int resultadopinbpc = pibpc1 > pibpc2;
+    int resultadosuper = superpoder1 > superpoder2;
 
         //apresentação das duas cartas.
         printf("Cadastro concluido, as cartas são: \n");
         printf("--------------------------\n");
         printf("Carta 1:\n"
-                "Estado: %c \n "
+                "Estado: %c\n "
                 "Codigo da carta: %s \n"
                 "Nome da cidade: %s \n"
-                "População: %d \n"
+                "População: %.2f\n"
                 "Area: %.2f \n"
                 "PIB: %.2f \n"
                 "Numero de pontos turisticos: %d \n"
                 "Densidade populacional: %.2f\n"
                 "PIB per capita: %.2f\n"
-                "Super poder: %.2lf\n",
+                "Super poder: %.2f\n",
                 letra1, codigo1, cidade1, populacao1, area1, pib1, pontos1, densidade1, pibpc1, superpoder1);
         
         printf("--------------------------\n");
@@ -102,13 +103,13 @@ printf("Cadastro concluido, vamos para o proximo.\n");
                 "Estado: %c\n "
                 "Codigo da carta: %s \n"
                 "Nome da cidade: %s \n"
-                "População: %d \n"
+                "População: %.2f\n"
                 "Area: %.2f \n"
                 "PIB: %.2f \n"
                 "Numero de pontos turisticos: %d \n"
                 "Densidade populacional: %.2f\n"
                 "PIB per capita: %.2f\n"
-                "Super poder: %.2lf\n",
+                "Super poder: %.2f\n",
                 letra2, codigo2, cidade2, populacao2, area2, pib2, pontos2, densidade2, pibpc2, superpoder2);
 //utilizei apenas 1 comando por carta
 
